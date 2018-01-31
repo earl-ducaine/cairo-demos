@@ -1,0 +1,6 @@
+Makefile
+qcairo
+.tmp
+controlwidgetbase.cpp
+controlwidgetbase.h
+

@@ -1,0 +1,24 @@
+2005-06-15  Carl Worth  <cworth@cworth.org>
+
+	* Makefile: Don't build gtkcairo_slide directory by default.
+
+	* X11/cairo-demo-xcb.c: (win_draw):
+	* X11/cairo-demo.c: (win_draw):
+	* X11/cairo-spline.c: (win_refresh): Track replacement of
+	cairo_status_string by cairo_status_to_string.
+
+2005-03-08  Steve Chaplin  <steve1097@yahoo.com.au>
+
+	* python/hangman.py, python/ChangeLog, python: remove, since
+	hangman.py has been copied over to pycairo/examples/gtk/
+
+2005-02-21  Carl Worth  <cworth@cworth.org>
+
+	* PS/Makefile:
+	* X11/Makefile:
+	* gtkcairo_slide/Makefile:
+	* png/Makefile: Try to be kinder for portability by not including
+	gcc-specific warning options in the Makefile. The options really
+	are handy, so we provide an example in the Makefile for how users
+	who want them can get at them.
+

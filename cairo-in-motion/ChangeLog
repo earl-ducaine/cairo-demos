@@ -1,0 +1,14 @@
+2005-12-08 Mirco Mueller <macslow@bangang.de>
+
+	I changed the class CairoSamples to use the 0.2.0 version of
+	Murray Cummings newly released C++-bindings "cairomm". Futhermore
+	I added two new samples that are derived from some experiments
+	I did with the <canvas>-object and JavaScript. See the relating
+	blog-entry on my homepage here: http://macslow.mine.nu/?p=25.
+	It's nice to see the similarities of the cairo-API and the
+	JavaScript-API for utilizing the <canvas>-object.
+
+2005-09-30 Mirco Mueller <macslow@bangang.de>
+
+	Made the initial release on my blog at http://macslow.mine.nu and checked
+	it in at cvs.cairographics.org (/cvs/cairo/cairo-demo/cairo-in-motion)

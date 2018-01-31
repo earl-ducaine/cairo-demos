@@ -1,0 +1,31 @@
+2005-07-21  Behdad Esfahbod  <behdad@behdad.org>
+
+	* tsetse.c: Several minor changes to shut gcc warnings up.
+
+2005-07-21  Carl Worth  <cworth@cworth.org>
+
+	* tsetse.c: (draw_symbol), (draw_card), (win_refresh), (win_init),
+	(win_deinit), (win_grow_pixmap): Port forward to the latest cairo
+	API.
+
+2005-03-20  Carl Worth  <cworth@cworth.org>
+
+	* Makefile: Fix to not overwrite user's CFLAGS
+	
+	* tsetse.c: (check_selected_for_set), (draw_board), (win_refresh),
+	(board_count_sets_possible), (board_init), (deal), (reshuffle),
+	(win_init), (reshuffle_cb), (toggle_display_sets_possible_cb):
+	Add support for displaying possible sets in current cards,
+	(toggled with space bar). Also refuse to reshuffle, (and set
+	display of possible sets on) if there are still possible sets.
+
+2005-02-19  Carl Worth  <cworth@cworth.org>
+
+	* tsetse.c (deal): Don't deal from a deck with no cards.
+	(new_game): Add new function to start a new game, (and bind to
+	'N').
+
+2005-02-19  Keith Packard  <keithp@keithp.com>
+
+	* tsetse.c:
+	Update for split headers

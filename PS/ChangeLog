@@ -1,0 +1,41 @@
+2005-08-05  Kristian Høgsberg  <krh@redhat.com>
+
+	* basket.c (main): Add cairo_surface_destroy() to make sure we
+	write finish the PS file properly (from Adrian Johnson).
+
+2005-05-17  Carl Worth  <cworth@cworth.org>
+
+	* Makefile:
+	* basket.c: (main), (draw):
+	* write_png.c: Update to latest cairo API changes.
+
+2005-02-28  Carl Worth  <cworth@cworth.org>
+
+	* Makefile (MYCFLAGS): Use canonical libpng12 name for pkgconfig
+	rather than libpng.
+
+2005-01-20  Carl Worth  <cworth@cworth.org>
+
+	* basket.c: Track split-up of cairo.h.
+
+2003-12-11  Carl Worth  <cworth@east.isi.edu>
+
+	* Makefile (CFLAGS): Use pkg-config to find libpng.
+
+2003-12-10  Carl Worth  <cworth@east.isi.edu>
+
+	* write_png.c (unpremultiply_data): Fix to keep libpng happy on
+	big-endian machines.
+
+
+2003-11-04  Carl Worth  <cworth@isi.edu>
+
+	* basket.c (main): Add a loop so the PostScript output has more
+	than one page.
+
+2003-11-03  Carl Worth  <cworth@isi.edu>
+
+	* basket.c (Y_INCHES): Increased page size and borders so the
+	figure doesn't land in the unprintable regions near the paper
+	edge.
+

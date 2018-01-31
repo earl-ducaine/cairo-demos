@@ -1,0 +1,28 @@
+cairo_snippets is a collection of code for testing, and demonstrating
+the cairo rendering API. Examine the Makefile for additional hints about
+usage.
+
+prepare_snippets - is a program used during the build process, it creates
+    the snippets.c file, to create a new front end for cairo_snippets, look
+    at the data and functions exported by snippets.c in snippets.h , by default
+    during the build process all .cairo files in the current dir is included in
+    the snippet collection.
+
+cairo_snippets_png - writes a png file for each snippet
+
+cairo_snippets_html - creates snippets.html, an index of the png's this is
+    the page located at http://cairographics.org/samples/ , the header and
+    footer of the page is read from header.html and footer.html
+
+cairo_snippets_gtk - a gui displaying a list of snippets, the source for the
+    currently selected snippet, and the rendered output, it uses GtkCairo,
+    and thus utilitizes the Render backend by default, if cairo and GtkCairo is
+    compiled with support for glitz, setting the enviroment variable GTKCAIRO_GL=1
+    will use the glitz backend instead
+
+cairo_snippets_ps  - makes a multipage ps document from all snippets
+cairo_snippets_pdf - makes a multipage pdf document from all snippets
+
+*.cairo - are the actual snippets, adding a new snippet requires you to add the
+    snippet, and recompile, the Makefile should figure out that things have
+    changed.

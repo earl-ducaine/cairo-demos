@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Encoding=UTF-8
+Name=MacSlow's Cairo-Clock
+Comment=linux.conf.au 2006 special-edition eye-candy
+Exec=/home/mirco/src/cairo-clock/cairo-clock
+Icon=/home/mirco/src/cairo-clock/cairo-clock-icon.png
+Categories=GNOME;Application;Utility;

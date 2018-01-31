@@ -1,0 +1,35 @@
+Cairo demonstration programs.
+
+Here are several simple programs intended to demonstrate some of the
+features of the CAiro graphics library (http://cairographics.org).
+
+After installing Cairo, it is quite simple to compile these demo
+programs. Just type:
+
+	make
+
+The demos in the png each draw to an in-memory image, then save that
+image as a PNG file. These demos were created for the Cairo (Xr) paper
+presented at the 2003 Ottawa Linux Symposium. They were intentionally
+designed to showcase individual features of Cairo in a very simple
+way. As such, the source code should be very easy to understand and
+can make a good introduction to Cairo. More explanation can be found
+in the paper which is available online:
+
+	http://cairographics.org/xr_ols2003/
+
+	(Note, the paper was written before Xr was renamed to Cairo,
+	but with a simple mental substitution, it should still be easy
+	to understand).
+
+The demos in the X11 directory use Cairo's X11 backend to draw to a
+window. Some of the examples (eg. cairo-freq and cairo-knockout)
+automatically scale the drawing to fit the window. The cairo-spline
+demo allows the user to interact with a mouse.
+
+Questions or comments may be directed to the cairo@cairographics.org
+mailing list:
+
+	http://cairographics.org/cgi-bin/mailman/listinfo/cairo
+
+Have fun.

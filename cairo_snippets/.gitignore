@@ -1,0 +1,11 @@
+*.eps
+*.png
+*.html
+snippets.ps
+snippets.pdf
+cairo_snippets_gtk
+cairo_snippets_html
+cairo_snippets_png
+cairo_snippets_ps
+prepare_snippets
+snippets.c

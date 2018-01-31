@@ -1,0 +1,12 @@
+<html>
+        <head><title>cairo: snippets</title>
+                <style type='text/css'>
+     @import url(http://cairographics.org/styles.css);
+     @import url(cairo_snippets.css);
+  </style>
+  <body>
+    <a name='PageTop'></a>
+    <div id='main'>
+      <div id='logo'><a href='http://cairographics.org/'><img border='0' src='http://cairographics.org/cairo_banner.png' alt='cairographics.org'/></a></div>
+
+      <div id='snippet_page_title'><h1><a href='index.html'>cairo samples</a></h1></div>

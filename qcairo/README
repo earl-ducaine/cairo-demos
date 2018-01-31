@@ -1,0 +1,8 @@
+Demo program showing how to use cairo within a QT program.
+Originally contributed by Zack Rusin <zack@kde.org>.
+
+Standard QT build procedures apply:
+
+	qmake
+	make
+

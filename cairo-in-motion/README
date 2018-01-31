@@ -1,0 +1,60 @@
+General Information:
+
+	"cairo in motion" came to life because I wanted to learn about cairo in the
+first place. Furhtermore I wanted to give it a handy/simple UI so people
+(including me) can toy around with some of cairo's attributes and settings
+without messing around in the code, recompile it, test it out and so on. For
+this I also sticked my nose a bit into libglademm/gtkmm.
+
+	There are three main areas in "cairo in motion". On the top-left you can
+change certain attributes which are taken into account by the cairo-sample
+displayed in the drawing-area on the right. Not every attribute is used by some
+examples though. On the bottom-left you have a list-view with all cairo-samples
+compiled into "cairo in motion". I regarded making them run-time loadable as a
+bit of an overkill for such a simple testbed. The same goes for the attributes.
+They aren't dynamic. One could make these two things fully dynamic of course.
+Maybe I'll do that some day when I'm too bored. You can trigger the display of
+one of the cairo-samples by either double-clicking with the LMB on its entry in
+the list view or highlight the entry with the cursor-keys and hit RETURN to
+start it. Finally there's the drawing-area on the right side. If you see
+"handles" (small red spots with a black outline) in the drawing-area, you can
+drag these around with the mouse (LMB-drag). Your dragging with the mouse
+overrides any animation that may take place. The rest (menubar) is
+selfexplanatory (I hope :)
+
+About The Code:
+
+	main.cpp isn't that intersting and also not very elegant I admit. The main
+interest is in the cairo-*.cpp/h files. I grabbed a good bit of code from the
+"cairo snippets" found at:
+
+	http://cairographics.org/samples/snippets.html
+
+	In addition to that I altered some of those examples in order to have them
+behave in an interactive manner and also added snippets of my own.
+
+Library Requirements:
+
+	cairo 1.1.1 (grabbed as HEAD from cairographics.org-CVS)
+	libsvg 0.1.4 (grabbed as HEAD from cairographics.org-CVS)
+	libsvg-cairo 0.1.6 (grabbed as HEAD from cairographics.org-CVS)
+	gtk+ 2.8.8
+	gtkmm 2.8.0
+	cairomm 0.1.0
+	libglade 2.5.1
+	libglademm 2.6.1
+
+Other Stuff I Used:
+
+	g++ 4.0.0
+	Eclipse 3.1 (with CDT 3.0)
+	Fedora Core 4
+
+If you have any questions, don't hesitate to drop me a line via eMail. And
+please fix my BUGS ;-)
+
+Share and enjoy!
+
+Best regards...
+
+MacSlow

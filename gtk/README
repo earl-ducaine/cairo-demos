@@ -1,0 +1,14 @@
+Sample usage of the gtk+ with cairo support.
+
+hello         A very simple application with a drawing area widget in a window,
+              displaying some text and graphics using cairo.
+
+mouse_events  Illustrating how to add handlers for mouse events
+
+
+
+proper inheritance
+==================
+
+See the ../gtk_slide for an example on how to properly use inheritance
+to create a proper new GtkWidget based using cairo.

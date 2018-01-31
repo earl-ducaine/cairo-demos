@@ -1,0 +1,21 @@
+gtk_slide
+==============
+
+Custom GTK+ widget and application, demonstrating Cairo support
+
+A cairo implementation of the classic sliding block puzzle, where you're supposed
+to slide the blocks into a configuration where the blocks are numbered incrementally.
+
+Implementation
+==============
+
+GtkSlide is well behaved and creates a puzzle widget that is derived from the
+GtkDrawingArea widget, this is the proper object oriented way of deriving a
+custom widget from GtkDrawingArea. Most other examples use the api directly.
+
+Dependencies
+============
+
+GtkSlide depends on Gtk+ >= 2.7, and it's dependencies
+
+2004 (c) Øyvind Kolås, pippin@freedesktop.org

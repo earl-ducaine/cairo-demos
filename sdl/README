@@ -1,0 +1,14 @@
+SDL Demo for Cairographics
+--------------------------
+
+DESCRIPTION:
+This demo provides a simple SVG viewer using SDL, Cairo, and libsvg.
+
+REQUIREMENTS:
+libsvg and libsvg-cairo, and (of course) cairo itself.
+Grab libsvg and libsvg-cairo from xsvg.org.
+
+--------------------------
+Comments are welcome.
+
+	- Eric Windisch <nospam@bwbohh.net>

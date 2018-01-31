@@ -1,0 +1,50 @@
+2005-08-12  Behdad Esfahbod  <behdad@behdad.org>
+
+	* *: port to Gtk+ >= 2.7 instead of GtkCairo.  Change the
+	name everywhere (in filenames too) to reflect this change.
+
+2005-08-08  Øyvind Kolås  <pippin@freedesktop.org>
+
+	* puzzle.c: updated to work with newer cairo api.
+
+2005-04-29  Øyvind Kolås  <pippin@freedesktop.org>
+
+	* gtk_slide.c: reordered functions, made game easier and added
+	welcome scroll/splash.
+
+2005-01-20  Carl Worth  <cworth@cworth.org>
+
+	* puzzle.c: Add include of stdio.h now that cairo.h doesn't
+	provide it.
+
+2004-11-11  Oeyvind Kolaas  <pippin@freedesktop.org>
+
+	* *.[ch]: reindentation to GNU coding style, and general code
+	cleanups.
+
+2004-06-23  OEyvind Kolaas  <pippin@freedesktop.org>
+
+	* puzzle.c : moved the font selection out of the loop drawing the
+	pieces, this leads to a speedup making gtk_slide useable.
+
+2004-05-13  OEyvind Kolaas  <pippin@freedesktop.org>
+
+	* *.[ch] : removed gdk_cairo_set_color, replaced with
+	gtk_cairo_set_gdk_color from GtkCairo
+
+2004-05-11  OEyvind Kolaas  <pippin@freedesktop.org>
+
+	* *.[ch] : replacing ct with cr
+
+2004-03-01  OEyvind Kolaas  <pippin@freedesktop.org>
+
+	* cairo_custom.[ch], puzzle.c : replaced cairo_set_gtk_color with
+                                    gdk_cairo_set_color
+
+2004-02-15  OEyvind Kolaas  <pippin@freedesktop.org>
+
+	* gtk_slide.c : removed superflous cairo_save/cairo_restor pairs
+
+2004-02-14  OEyvind Kolaas  <pippin@freedesktop.org> 
+
+	Initial import

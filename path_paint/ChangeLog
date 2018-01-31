@@ -1,0 +1,42 @@
+2005-08-15  Behdad Esfahbod  <behdad@behdad.org>
+
+	* path_paint.c: use Gtk+ proper instead of gtkcairo.
+	Patch from Behnam Esfahbod. (#4081)
+
+2005-08-08  Øyvind Kolås  <pippin@freedesktop.org>
+
+	* path_paint.c: make the default alpha value be 0.5
+
+2005-08-08  Øyvind Kolås  <pippin@freedesktop.org>
+
+	* path_paint.c: update to work with current cairo api.
+
+2005-04-15  Øyvind Kolås  <pippin@freedesktop.org>
+
+	* path_paint.c: use cairo_set_source_rgb?
+
+2005-03-30  Øyvind Kolås  <pippin@freedesktop.org>
+
+	* path_paint.c: Applied memset parameter reordering patch from 
+	Ronny V. Vidennes <s864@ii.uib.no>.
+
+2004-11-11  Øyvind Kolås  <pippin@freedesktop.org>
+
+	* path_paint.c: reindentation and general code cleanup to better adhere
+	with GNU coding standards.
+	* Makefile.c: cleanup, added clean target
+
+2004-09-20  Øyvind Kolås  <pippin@freedesktop.org>
+
+	* path_paint.c: signal in gtkcairo was renamed from redraw to paint
+
+2004-05-28  Øyvind Kolås  <pippin@freedesktop.org> 
+
+	* path_paint.c: added X keybinding for toggling between black/white
+	color
+ 
+2004-05-27  Øyvind Kolås  <pippin@freedesktop.org> 
+
+	Initial import
+
+/* vim: set ts=4 noet : */

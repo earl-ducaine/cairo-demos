@@ -1,0 +1,279 @@
+2005-06-17  Kristian Høgsberg  <krh@redhat.com>
+
+	* snippets/text.cairo: Close the path between the circles.
+
+2005-06-03  Kristian Høgsberg  <krh@redhat.com>
+
+	* cairo_snippets_html.c: Update html snippets.
+
+	* snippets/pattern_fill.cairo: Remove this, was accidentally
+	committed.
+
+2005-05-16  Kristian Høgsberg  <krh@redhat.com>
+
+	* cairo_snippets_pdf.c (main): Use new PDF constructor (filename
+	instaed of FILE).
+
+2005-05-14  Øyvind Kolås  <pippin@freedesktop.org>
+
+	* cairo_snippets_png.c: reordered surface and cr destruction calls.
+
+2005-05-13  Kristian Høgsberg  <krh@redhat.com>
+
+	* cairo_snippets_pdf.c (main): Use new PDF constructor.
+
+2005-05-12  Steve Chaplin  <steve1097@yahoo.com.au>
+
+	* cairo_snippets_png.c: remove #include <cairo-png.h>
+
+2005-05-11  Owen Taylor  <otaylor@redhat.com>
+
+        * cairo_snippets_win32.c (on_paint): Remove a stray cairo_new_path()
+	that is no longer needed.
+	
+2005-05-11  Owen Taylor  <otaylor@redhat.com>
+
+	* cairo_snippets_pdf.c (main): API update.
+
+2005-05-11  Owen Taylor  <otaylor@redhat.com>
+
+	* cairo_snippets_png.c cairo_snippets_ps.c cairo_snippets_win32.c
+	snippets/*.cairo: Cairo API updates.
+
+	* snippets.h: Remove a stray png-io.h include.
+
+	* snippets/pattern_fill.cairo: Remove some unused extern 
+	prototypes that were breaking compilation.
+
+2005-05-02  Kristian Høgsberg  <krh@redhat.com>
+
+	* png_io.c:
+	* png_io.h:
+	* cairo_snippets_png.c:
+	* Makefile.am: Drop custom PNG IO functions and use cairo's new
+	PNG functions.
+	
+	* prepare_snippets.c:
+	* snippets/clip_image.cairo:
+	* snippets/curve_rectangle.cairo:
+	* snippets/fill_and_stroke.cairo:
+	* snippets/fill_and_stroke2.cairo:
+	* snippets/image.cairo:
+	* snippets/imagepattern.cairo:
+	* snippets/libsvg.cairo:
+	* snippets/text.cairo: Port to cairos new group semantics by using
+	cairo_fill_preserve() instead of cairo_save()/cairo_restore() to
+	keep the current path after filling it.  Use
+	cairo_image_surface_create_from_png() to load png files.  Fix
+	pointer signedness in a couple of places.
+
+2005-04-22  Carl Worth  <cworth@cworth.org>
+
+	* cairo_snippets_pdf.c:
+	* cairo_snippets_ps.c:
+	* prepare_snippets.c: (make_util):
+	* snippets/arc.cairo:
+	* snippets/arc_negative.cairo:
+	* snippets/curve_rectangle.cairo:
+	* snippets/curve_to.cairo:
+	* snippets/operator_add.cairo:
+	* snippets/operator_atop.cairo:
+	* snippets/operator_atop_reverse.cairo:
+	* snippets/operator_in.cairo:
+	* snippets/operator_in_reverse.cairo:
+	* snippets/operator_out.cairo:
+	* snippets/operator_out_reverse.cairo:
+	* snippets/operator_over.cairo:
+	* snippets/operator_over_reverse.cairo:
+	* snippets/operator_saturate.cairo:
+	* snippets/operator_xor.cairo:
+	* snippets/text.cairo:
+	* snippets/text_align_center.cairo:
+	* snippets/text_extents.cairo: Update for changes in the cairo
+	API, including:
+
+		Use 72.0 scale factor instead of 96.0
+		Use unsigned char as appropriate
+		Use cairo_set_source_rgba instead of cairo_set_rgb_color
+		and cairo_set_alpha.
+	
+2005-04-01  Carl Worth  <cworth@cworth.org>
+
+	* cairo_snippets_png.c: (snippet_do_png): Track removal of
+	cairo_set_target_png.
+
+2005-03-04  Owen Taylor  <otaylor@redhat.com>
+
+	* cairo_snippets_png.c (snippet_do_png): Open output file
+	with "wb".
+
+2005-02-24 Owen Taylor <otaylor@redhat.com>
+
+	* configure.ac Makefile.am: Build the PDF and Win32 
+	backends conditionally.
+
+	* autogen.sh: Replace with something more comprehensive
+	based on the Cairo version.
+
+	* configure.ac: Add AC_CONFIG_HEADERS
+
+	* cairo_snippets_ps.c: Include <cairo-ps.h>
+
+2005-02-06  Øyvind Kolås  <pippin@freedesktop.org>
+
+	* Makefile.am: added cflags to the cairo_snippets_gtk target.
+
+2005-02-06  Øyvind Kolås  <pippin@freedesktop.org>
+
+	* autogen.sh: added
+
+2005-02-02  Owen Taylor  <otaylor@redhat.com>
+
+	* cairo_snippets_win32.c (WndProc): Add a missing return.
+
+	* configure.ac: remove unneeded AC_ISC_POSIX.
+
+2005-02-01  Kristian Høgsberg  <krh@redhat.com>
+
+	* snippets/curve_rectangle.cairo: Fix clash between global width
+	and height parameters and rectangle width and height.
+
+	* autotool this thing, move *.cairo into snippets/ and webpage
+	related files into html/.
+
+2005-01-31 Owen Taylor <otaylor@redhat.com>
+
+	* cairo_snippets_win32.c: Add a Windows version of the 
+	snippets wrapper.
+
+	* Makefile (CFLAGS): Add a rule for cairo_snippets_win32;
+	won't work without some extra editing.
+
+2005-01-20  Carl Worth  <cworth@cworth.org>
+
+	* Makefile (CFLAGS): Actually use the settings of CFLAGS when
+	compiling.
+
+2005-01-11  Øyvind Kolås  <pippin@freedesktop.org>
+
+	* prepare_snippets.c
+	* snippets.h: Added snippets_normalize () function.
+	* *.cairo: Added snippets_normalize (cr, width, height) before
+	drawing to all snippets.
+	* cairo_snippets_*.c: Removed common initialization.
+	* cairo_snippets_pdf.c:
+	* cairo_snippets_ps.c: Changed to use a 2x2 in test area.
+	* Makefile: Changed destination folder for publishing of snippets
+	on the web.
+
+2005-01-05  Kristian Høgsberg  <krh@redhat.com>
+
+	* Makefile (COMPILE_PROGS): Reenable PDF snippets.
+	* cairo_snippets_pdf.c (main): Add feature to only output specific snippets.
+
+2004-09-6  Owen Taylor  <otaylor@redhat.com>
+
+	* cairo_snippets_html.c (do_index): index() is a C library
+	function, rename to do_index().
+
+	* Makefile: Add -g -Wall -O2, to get good warnings.
+
+	* cairo_snippets_html.c prepare_snippets.c: Fix warnings.
+
+	* cairo_snippets_png.c: Allow individual snippet names
+	to be specified on the command line.
+
+2004-08-03  Carl Worth  <cworth@isi.edu>
+
+	* xxx_clip_rectangle.cairo: Added test to deomnstrate current bug
+	in rectangle-based clipping.
+
+2004-07-04  OEyvind Kolaas <pippin@freedesktop.org>
+	* prepare_snippets.c : escape back slash correctly
+
+2004-06-04  Carl Worth  <cworth@isi.edu>
+
+	* operator_add.cairo, operator_atop.cairo,
+	operator_atop_reverse.cairo, operator_in.cairo,
+	operator_in_reverse.cairo, operator_out.cairo,
+	operator_out_reverse.cairo, operator_over.cairo,
+	operator_over_reverse.cairo, operator_saturate.cairo,
+	operator_xor.cairo: Set alpha to 0.5 for more interesting results.
+
+2004-05-26  OEyvind Kolaas <pippin@freedesktop.org>
+
+	* text_centering.cairo: removed
+	* text_align_center.cairo: added
+	* text_align_right.cairo: added
+	* text_extents: added
+	
+2004-05-20  OEyvind Kolaas <pippin@freedesktop.org>
+
+	* index.html_template: main page for the snippet pages
+	* renamed header.html->header.html_template
+	* renamed footer.html->footer.html_template
+	* cairo_snippets_html.c : added seperate pages for each snippet
+	* .cvsignore: added *.html
+	* Makefile: added *.html to clean
+
+2004-05-19  OEyvind Kolaas <pippin@freedesktop.org>
+	
+	* operator_*.cairo: added tests for compositing modes.
+	* .cvsignore: added snippets.ps and snippets.pdf
+
+2004-05-19  Carl Worth  <cworth@isi.edu>
+
+	* header.html: Give attribution to Øyvind Kolås for original
+	creation of snippets.
+
+	* .cvsignore: Add .cvsignore to ignore auto-generated files.
+
+2004-05-18 OEyvind Kolaas <pippin@freedesktop.org>
+
+	* curve_rectangle.cairo: added a custom shape snippet, which also
+	tests storking with alpha
+
+2004-05-18 OEyvind Kolaas <pippin@freedesktop.org>
+
+	* Makefile: general cleanup, added target html
+	* cairo_snippets_png.c: removed html stuff
+	* cairo_snippets_html.c: seperated out the html index generator
+	* header.html: header for the webpage
+	* footer.html: footer for the webpage
+	* README: added more information
+
+2004-05-18 OEyvind Kolaas <pippin@freedesktop.org>
+
+	* xxx_clipping.cairo xxx_image_clipping.cairo: removed
+	* clipping.cairo image_clipping.cairo: added
+
+    Awaiting commit of the changes which lead to this ;)
+
+2004-05-18 OEyvind Kolaas <pippin@freedesktop.org>
+
+	* cairo_snippets_ps.c: added postscript with basis in the pdf version
+
+2004-05-18 OEyvind Kolaas <pippin@freedesktop.org>
+
+	* cairo_snippets_gtk.c: removed STRIDE define
+
+2004-05-18 OEyvind Kolaas <pippin@freedesktop.org>
+
+	* cairo_snippets_pdf.c: code cleanup
+
+2004-05-18 OEyvind Kolaas <pippin@freedesktop.org> 
+
+	* cairo_snippets_png.c: code cleanup, change to use the actual png backend
+	instead of using the png writing function in png_io.
+	* png_io.[ch]: removed png writing function
+
+2004-05-18 OEyvind Kolaas <pippin@freedesktop.org> 
+
+	* cairo_snippets_pdf.c, Makefile: added pdf backend, initially commented
+	  out in Makefile
+    
+2004-05-16 OEyvind Kolaas <pippin@freedesktop.org> 
+
+	Initial import
+
+/* vim: set ts=4 noet : */

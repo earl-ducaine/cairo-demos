@@ -1,0 +1,14 @@
+There is nothing to install as such. Just do a make inside this directory and
+everything should be ready to run after a few seconds. Be sure to have...
+
+    gtk+ 2.8.x
+	cairo 1.0.2
+	librsvg 2.13.5
+    some half-way decent compositing-manager (e.g. xcompmgr)
+	Xorg 6.9/7.0 (with enabled Composite-extension)
+	a good gfx-card with drivers that accelerate Render (e.g. GeForce-series)
+
+running. That should put you in the position to compile and runs the eye-candy.
+To my current knowledge such a setup is (at least the software-side) provided by
+"Dapper Drake Flight 3" (current beta of "Ubuntu 6.04") and "Fedora Core 5 test
+2" (obviously current beta of "Fedora Core 5").

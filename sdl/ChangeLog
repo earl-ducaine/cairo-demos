@@ -1,0 +1,11 @@
+2005-08-30  Mauricio Piacentini <mauricio@tabuleiro.com>
+	* main.c: adjust SDL surface creation and flags to match cairoARGB32 format, preserve alpha
+
+2005-07-12  Carl Worth  <cworth@cworth.org>
+
+	* main.c: (load_svg): Port things forward to the latest cairo API.
+
+2004-03-18  Eric Windisch  <nospam@bwbohh.net>
+
+	* sdl: initial version.
+

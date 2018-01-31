@@ -1,0 +1,18 @@
+cairo-samples.cpp: everything dealing with PNG-images doesn't work yet, because
+I moved all cairo-related things to use the new C++-bindings of cairomm-0.2.0,
+therefore I disabled the execution of the cairo-samples/hacks:
+
+	image
+	image_pattern
+	moving_clip_image
+
+main.cpp: on_font_set() doesn't handle all font-attributes (slant, weight)
+that can be found under the sun, it's just a quick hack to get some font-
+-attributes over to CairoSamples
+
+main.cpp: I don't know how to initially highlight/select the first (or just any)
+row in the samples-TreeView
+
+dragging of the handle-points isn't implemented yet
+
+yes, I know it's currently slow as hell

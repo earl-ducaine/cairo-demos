@@ -1,0 +1,9 @@
+cairo-clock:
+      - maybe add a date-display in the lower halve like chronographs have
+      - maybe add a popup-menu and a settings-dialog
+      - maybe allow easy theme-switching via command-line/settings-dialog
+      - maybe save settings in a rc-file
+
+wobbly-zini:
+      - make some features settable via the commandline
+      - maybe add drop-shadows

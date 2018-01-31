@@ -1,0 +1,69 @@
+2005-05-17  Carl Worth  <cworth@cworth.org>
+
+	* sproing.c: (begin_paint), (draw_spline_grid),
+	(draw_spline_spiral), (draw_wall): Update to the latest cairo API
+	changes.
+
+2005-04-18  Carl Worth  <cworth@cworth.org>
+
+	* sproing.c: (draw_ball), (draw_star): Track removal of
+	cairo_set_alpha from cairo API.
+
+2005-04-13  Carl Worth  <cworth@cworth.org>
+
+	* sproing.c (WALL_X, WALL_Y): Double the size of the wall spacing
+	in each dimension.
+	(draw_wall): Draw a solid color in the background of the wall area.
+
+2005-03-28  Kristian Høgsberg  <krh@redhat.com>
+
+	* sproing.c (model_step_object): Add simplistic collision
+	detection experiment.
+
+2005-03-28  Carl Worth  <cworth@cworth.org>
+
+	* sproing.c: (model_step_object), (sproing_button_release_event),
+	(create_window): Increase default spring constant to 15. Release
+	the immobile anchor point when the user releases the button.
+
+2005-03-28  Carl Worth  <cworth@cworth.org>
+
+	* sproing.c: Reworked to have 2-way springs in the model, rather
+	than 1-way attractors in the objects. The 2-way behavior lets us
+	now pull any point around, (which is what's in place here). But
+	the springs add a bit more bouncing than we'll actually want I
+	think.
+
+2005-03-28  Carl Worth  <cworth@cworth.org>
+
+	* sproing.c: (sproing_expose_event), (sproing_button_press_event),
+	(sproing_motion_notify_event), (create_window): Remove old
+	scribble names left over from some copy-and-paste.
+
+2005-03-28  Carl Worth  <cworth@cworth.org>
+
+	* sproing.c: (sproing_expose_event), (sproing_button_press_event),
+	(sproing_motion_notify_event), (create_window):
+
+2005-03-28  Carl Worth  <cworth@cworth.org>
+
+	* sproing.c (scribble_button_press_event): Fix pixel-alignment bug
+	on button press without motion.
+
+	* .cvsignore: Added sproing binary to .cvsignore.
+
+2005-03-11  Kristian Høgsberg  <krh@redhat.com>
+
+	* COPYING: Convert this to UTF-8.
+
+2005-03-11  Carl Worth  <cworth@cworth.org>
+
+	* sproing.c: (model_init), (draw_spline_grid),
+	(scribble_motion_notify_event): Add some strategic 0.5 offsets so
+	that the patch settles down to pixel-aligned, width 1.0 lines.
+
+2005-03-11  Kristian Høgsberg  <krh@redhat.com>
+
+	* Makefile, sproing.c: New cairo demo.  Drag a wobbly patch around
+	for fun.
+

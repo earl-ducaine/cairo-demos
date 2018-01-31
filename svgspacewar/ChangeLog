@@ -1,0 +1,61 @@
+2007-01-12  Behdad Esfahbod  <behdad@behdad.org>
+
+	From Nigel Tao <nigel.tao@myrealbox.com>:
+
+	* svgspacewar.c (draw_turning_flare): Update to latest cairo API
+	semantics, to work again.
+
+	* svgspacewar.c (on_key_event): Make it work with arrow keys, not
+	keypad.
+
+2005-08-19  Behdad Esfahbod  <behdad@behdad.org>
+
+	* README: Added.  Noted that gtk+ >= 2.7.0 is required.
+
+2005-08-12  Behdad Esfahbod  <behdad@behdad.org>
+
+	* svgspacewar.c: Misc changes to shut gcc warning up.
+
+2005-07-29  Behdad Esfahbod  <behdad@behdad.org>
+
+	* svgspacewar.c: Use M_PI instead of handcoding $\pi$.
+
+2005-06-22  Carl Worth  <cworth@cworth.org>
+
+	From Nigel Tao <nigel.tao@myrealbox.com>:
+
+	* svgspacewar.c: (draw_energy_bar), (draw_ship_body): Port
+	fill+stroke code forward to work with 0.5.0.
+
+2005-06-22  Carl Worth  <cworth@cworth.org>
+
+	* svgspacewar.c: (scale_for_aspect_ratio): Put the clipping back,
+	(it actually was needed). But call cairo_clip before cairo_scale
+	in order to get the fast-path clipping.
+
+2005-06-21  Carl Worth  <cworth@cworth.org>
+
+	* svgspacewar.c: (on_expose_event): Remove unneeded cairo_clip to
+	draw background color. It was just slowing things down when
+	scaling.
+
+2005-06-21  Carl Worth  <cworth@cworth.org>
+
+	From Nigel Tao <nigel.tao@myrealbox.com>:
+
+	* Makefile:
+	* svgspacewar.c: (main), (on_expose_event), (draw_energy_bar),
+	(draw_ship_body), (draw_flare), (draw_turning_flare),
+	(draw_missile), (draw_exploded_missile), (draw_star),
+	(show_text_message): Track changes in cairo API, bringing things
+	up to work with cairo 0.5.0. Now uses cairo support in GTK+
+	rather than using gtkcairo.
+
+2005-03-31  Øyvind Kolås  <pippin@freedesktop.org>
+
+	* .cvsignore: added svgspacewar
+
+2005-03-31  Øyvind Kolås  <pippin@freedesktop.org>
+
+	Initial import into CVS.
+

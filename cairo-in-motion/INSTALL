@@ -1,0 +1,2 @@
+There is no "install" make-target. Just compile it with "make" and run it from
+its directory.

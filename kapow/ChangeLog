@@ -1,0 +1,19 @@
+2005-05-17  Carl Worth  <cworth@cworth.org>
+
+	* Makefile:
+	* kapow.c: (bend_it), (make_text_path), (stdio_write), (main):
+	Update to all the latest cairo API changes.
+
+2005-04-01  Carl Worth  <cworth@cworth.org>
+
+	* kapow.c: (main): Track removal of cairo_set_target_png.
+
+2005-01-24  Kristian Høgsberg  <krh@redhat.com>
+
+	* kapow.c (main): Add support for runing as a CGI script.
+
+2005-01-24  Carl Worth  <cworth@cworth.org>
+
+	* kapow.c (main): Print usage message if not argument is
+	given. Default to text of "kapow".
+

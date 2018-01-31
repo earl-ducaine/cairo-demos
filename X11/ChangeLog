@@ -1,0 +1,90 @@
+2005-07-25  Kristian Høgsberg  <krh@redhat.com>
+
+	* cairo-knockout.c (fill_checks, draw): Update for cairo_content_t
+	API changes.
+
+2005-05-17  Carl Worth  <cworth@cworth.org>
+
+	* cairo-demo-xcb.c: (win_draw):
+	* cairo-demo.c: (win_draw):
+	* cairo-knockout.c: (main):
+	* cairo-spline.c: (win_refresh): Update for yet more cairo API
+	changes.
+
+2005-05-13  Carl Worth  <cworth@cworth.org>
+
+	* .cvsignore:
+	* Makefile:
+	* cairo-demo-xcb.c: Split XCB stuff out out cairo-demo and into
+	its own cairo-demo-xcb.
+	
+	* cairo-demo.c:
+	* cairo-demo-xcb.c:
+	* cairo-knockout.c:
+	* cairo-spline.c: Update all X11 demos to latest cairo API
+	changes.
+
+2005-02-21  Carl Worth  <cworth@cworth.org>
+
+	* cairo-knockout.c (main): Switch from Xutf8SetWMProperties to
+	XmbSetWMProperties for better portability to Solaris.
+
+2005-02-07  Øyvind Kolås  <oeyvindk@hig.no>
+
+	* cairo-spline.c (win_init): initialize the stored mouse coordinates,
+	to silence valgrind.
+	* cairo-demo.c: add proper macros to use xcb instead of xlib when
+	available.
+
+2005-01-20  Carl Worth  <cworth@cworth.org>
+
+	* cairo-spline.c: 
+	* cairo-knockout.c: 
+	* cairo-demo.c: Track split-up of cairo.h.
+
+2004-11-10  Carl Worth  <cworth@cworth.org>
+
+	* cairo-spline.c (win_grow_pixmap): Don't refresh
+	immediately. Just schedule for later when idle.
+
+Thu Oct 28 15:37:55 2004  Owen Taylor  <otaylor@redhat.com>
+
+	* Makefile (PROGS): Remove various non-checked-in test
+	programs that crept in.
+
+2004-05-11  Øyvind Kolås  <oeyvindk@hig.no>
+    
+	* *.[ch] : replace ct with cr
+
+2004-04-06  David Reveman  <c99drn@cs.umu.se>
+
+	* cairo-knockout.c (fill_checks): Fix cairo_set_pattern.
+
+2003-12-08  Dave Beckett  <Dave.Beckett@bristol.ac.uk>
+
+	* cairo-spline.c: cairo-knockout.c, cairo-demo.c: Remove
+	cairo-xlib.h, no longer needed.
+
+2003-11-20  Carl Worth  <cworth@east.isi.edu>
+
+	* cairo-knockout.c (main): Fix missing break in switch statement.
+
+2003-11-19  Carl Worth  <cworth@isi.edu>
+
+	* cairo-knockout.c: Double buffer everything so expose handling is
+	a simple copy operation. Only do redraw after resize. Add more
+	window properties so window managers like metacity will decorate
+	the window.
+	(oval_path): 
+	(fill_checks): 
+	(draw_3circles): 
+	(draw): Rename cairo_t identifier from r to cr.
+	(main): Add "cairo" to window title. Fix comments
+
+2003-11-07  Carl Worth  <cworth@isi.edu>
+
+	* cairo-spline.c: Added code to demonstrate use of cairo_in_stroke
+	and cairo_in_fill. Various code cleanups.
+
+	* Makefile (PROGS): Remove cairo-freq which wasn't adding anything.
+

@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Encoding=UTF-8
+Name=MacSlow's Wobbly-Zini
+Comment=even more linux.conf.au 2006 special-edition eye-candy
+Exec=/home/mirco/src/cairo-clock/wobbly-zini
+Icon=/home/mirco/src/cairo-clock/wobbly-zini-icon.png
+Categories=GNOME;Application;Utility;

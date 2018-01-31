@@ -1,0 +1,34 @@
+<p>
+   This page contains samples of cairo's rendered output and the
+    code snippets used to create them.
+</p>
+
+<p>
+   The <em>user space</em> is the unit square ( (0,0) - (1, 1) ),
+   this user space is initialized byt the snippet_normalize function,
+   which also sets a line_width of 0.04.
+   The snippets are meant to be short, and easy to understand
+</p>
+      
+<p>
+   <a href='http://cvs.cairographics.org/cairo-demo/cairo_snippets/'>cairo_snippets</a>,
+   part of the cairo-demo module in cairo CVS, is used to create these webpages,
+   cairo_snippets serves as a testbed for the rendered output of various cairo backends,
+   the images rendered on these webpages uses the cairo_snippets_png program, which is
+   backend by the software image backend.
+</p>
+      
+<p>
+   The snippet enviroment, and the original snippets were originally 
+   created by &Oslash;yvind Kol&aring;s for a paper submitted
+   to <a href='http://2004.guadec.org/'>GUADEC 2004</a>.
+</p>
+
+<p>
+   All snippet code is considered to be part of the public domain,
+   since it is instructional material.
+</p>
+
+<p>
+  A page with <a href='snippets.html'>all snippets</a> is also available
+</p>

@@ -1,0 +1,170 @@
+2005-09-14  Carl Worth  <cworth@cworth.org>
+
+	* text.c (box_text): Update for change in cairo_show_text
+	semantics in that it now moves the current point.
+
+2005-07-29  Behdad Esfahbod  <behdad@behdad.org
+
+	* bevels.c: Remove C99ism. Shut gcc warning off.
+	* outline.c: Remove useless argument. Shut gcc warning off.
+	* snapping.c: Don't shadow y1. Shut gcc warning off.
+
+2005-05-17  Carl Worth  <cworth@cworth.org>
+
+	* bevels.c:
+	* caps_joins.c:
+	* hering.c:
+	* outline.c:
+	* snapping.c:
+	* spiral.c:
+	* splines_tolerance.c:
+	* star_and_ring.c:
+	* stars.c:
+	* text-rotate.c:
+	* text.c: Remove stale includes of write_png.h.
+
+2005-05-17  Carl Worth  <cworth@cworth.org>
+
+	* write_png.c:
+	* write_png.h: Remove local copy of write_png code which cairo
+	supplies quite well on its own.
+
+2005-05-17  Carl Worth  <cworth@cworth.org>
+
+	* text.c (main): Remove #warning since I figured out what I was
+	doing wrong with cairo_set_font_matrix.
+
+2005-05-17  Carl Worth  <cworth@cworth.org>
+
+	* Makefile:
+	* bevels.c: (set_hex_color), (main):
+	* caps_joins.c: (main), (stroke_v_twice), (draw_caps_joins):
+	* hering.c: (main), (draw_hering):
+	* outline.c: (main), (create_gradient), (draw_outlines):
+	* snapping.c: (snap_point_for_fill), (snap_point_for_stroke),
+	(snap_line_width), (snap_path_for_fill), (snap_path_for_stroke),
+	(draw_nested), (main):
+	* spiral.c: (main), (draw_spiral):
+	* splines_tolerance.c: (main), (draw_splines):
+	* star_and_ring.c: (star_path), (fill_ring), (fill_star), (main):
+	* stars.c: (main), (draw_stars):
+	* text-rotate.c: (main):
+	* text.c: (box_text), (box_glyphs), (main):
+	Update all programs to match recent cairo API changes.
+
+2005-04-01  Carl Worth  <cworth@cworth.org>
+
+	* caps_joins.c:
+	* hering.c:
+	* outline.c:
+	* spiral.c:
+	* splines_tolerance.c:
+	* stars.c:
+	* text-rotate.c:
+	* text.c:
+	* write_png.c:
+	* write_png.h: Convert file encodings to utf-8.
+
+2005-03-18  Carl Worth  <cworth@cworth.org>
+
+	* star_and_ring.c: Add example showing how to use
+	CAIRO_OPERATOR_ADD to draw to interwoven objects without any
+	seams.
+
+2005-02-28  Carl Worth  <cworth@cworth.org>
+
+	* Makefile (MYCFLAGS): Use canonical libpn12 name for pkgconfig
+	rather than libpng.
+
+2004-11-11  Øyvind Kolås  <pippin@freedesktop.org>
+
+	* Makefile: removed read_png.c from Makefile, it's neither present in
+	CVS repository nor used by examples, remove generated pngs when
+	cleaning up.
+
+2004-11-03  Carl Worth  <cworth@cworth.org>
+
+	* snapping.c (snap_point_for_fill): Fix typo snapping y to x.
+	(snap_line_width): Fix to maintain sign of width when clamping to
+	maintain >= 1.0. Without this, a reflective transformation would
+	cause the width to go negative and the line would disappear.
+
+2004-10-25  Carl Worth  <cworth@cworth.org>
+
+	* snapping.c (snap_point_for_fill, snap_point_for_stroke)
+	(snap_line_width): Switch from integer truncation to floor() so
+	that rounding works as desired with negative numbers.
+
+2004-10-22  Carl Worth  <cworth@cworth.org>
+
+	* snapping.c: Add demo showing how to do device-pixel-aligned
+	graphics.
+	Correct typo in comment.
+
+2004-10-18  Carl Worth  <cworth@cworth.org>
+
+	* bevels.c: Add bevel example showing lines of 1-pixel width.
+	(draw_bevels): Add sample radio buttons to demonstrate that
+	circles work as well as rectangles.
+	(bevel_circle): Fix circular widgets to match style of squares.
+
+2004-09-10  Carl Worth  <cworth@brudder.east.isi.edu>
+
+	* Makefile (CFLAGS+): Fix typo.
+
+2004-05-11  Øyvind Kolås <oeyvindk@hig.no>
+	* *.[ch] : replacing ct with cr
+
+2004-04-28  Carl Worth  <cworth@isi.edu>
+
+	* write_png.c (unpremultiply_data): Use memcpy rather than
+	assignment to avoid problems with unaligned pointers on particular
+	machines.
+	(unpremultiply_data): Missed one.
+	(unpremultiply_data): Take three.
+
+2004-04-06  David Reveman  <c99drn@cs.umu.se>
+
+	* outline.c: Fix cairo_set_pattern.
+
+2004-03-13  Richard Worth  <richard@theworths.org>
+
+	* write_png.c, write_png.h: style changes
+
+2004-02-19  Dave Beckett  <Dave.Beckett@bristol.ac.uk>
+
+	* text.c, text-rotate.c: Remove FcFini call from newer fontconfig
+	than I have here (2.2.1).  May leak memory if valgrind checking.
+
+2003-12-17  Carl Worth  <cworth@isi.edu>
+
+	* Makefile (EXAMPLES): Add text-rotate.
+
+	* text-rotate.c: New program demonstrating text rotation.
+
+2003-12-16  Carl Worth  <cworth@isi.edu>
+
+	* text.c (box_text):
+	(box_glyphs): Add calls to cairo_text_path and cairo_glyph_path to
+	demonstrate how to draw stroked (outlined) text.
+
+2003-12-15  Carl Worth  <cworth@isi.edu>
+
+	(box_glyphs): 
+	(box_text): Track changes in cairo_text_extents_t structure.
+
+2003-12-15  Carl Worth  <cworth@isi.edu>
+
+	* text.c: Add boxes to demonstrate use of cairo_text_extents and
+	cairo_glyph_extents. Add several text examples to demonstrate
+	behavior of extents under various transformations.
+
+2003-12-11  Carl Worth  <cworth@east.isi.edu>
+
+	* Makefile (LDFLAGS): Use pkg-config to find libpng.
+
+2003-12-10  Carl Worth  <cworth@east.isi.edu>
+
+	* write_png.c (unpremultiply_data): Fix to keep libpng happy on
+	big-endian machines.
+

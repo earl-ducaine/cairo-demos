@@ -1,0 +1,33 @@
+2005-08-24  Behdad Esfahbod  <behdad@behdad.org>
+
+	* qcairowidget.cpp: Use Qt platform-specific wrappers instead of Xlib.
+	Patch from Mauricio Piacentini.
+
+2005-08-19  Behdad Esfahbod  <behdad@behdad.org>
+
+	* Updated to latest Cairo interface.  Patch from Mauricio Piacentini.
+
+2005-07-01  Carl Worth  <cworth@cworth.org>
+
+	From 2005-01-25 Zack Rusin <zack@kde.org>:
+
+	* .cvsignore:
+	* controlwidgetbase.ui:
+	* mainwindow.cpp:
+	* mainwindow.h:
+	* qcairo.cpp:
+	* qcairo.h:
+	* qcairo.pro:
+	* qcairowidget.cpp:
+	* qcairowidget.h:
+	* qkapow.cpp:
+	* qkapow.h:
+
+	1) I created a QCairoWidget which has a
+	virtual void cairoPaint(cairo_t *)
+	method which essentially replaces the QWidget::paintEvent. It's done
+	essentially to enable people to just take the widget, stick it in their
+	app and just use Cairo (either duble-buffered or not).
+	2) Instead of the old demo code it uses now kapow. It's a little bit
+	more attractive and nicely shows how to use QCairoWidget.
+	

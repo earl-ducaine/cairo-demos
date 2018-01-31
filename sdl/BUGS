@@ -1,0 +1,2 @@
+*) Only works in 32bpp mode.
+  - This breaks aalib and many Xservers.  Crashes Xnest, even.

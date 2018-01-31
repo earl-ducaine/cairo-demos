@@ -1,0 +1,21 @@
+The clock now uses a fixed set of SVG-files to determine its look. Thus it is
+now possible to skin the clock. Just replace the 12 SVG-files with your own set
+of files to give the clock your own personal style. Take note, that the
+filenames are currently hard-coded. Open the default set of files in inkscape to
+get an idea how to draw your own theme. In the near future proper theme-support
+for the clock seems within reach. Furthermore the clock is no longer affected by
+cairo-bug #5681.
+
+The overall performance (refresh and redrawn) is much better now.
+
+A few command-line options are available now. Here's the output of of the
+command "cairo-clock --help":
+
+Usage: ./cairo-clock
+        --seconds (refresh every second and draw second-hand)
+        --width <int> (open window with this width)
+        --height <int> (open window with this height)
+        --help (this usage-description)
+
+And always remember... this is still work-in-progress. Now have fun with
+creating your own clock-theme!

@@ -1,0 +1,23 @@
+2006-07-06 Mirco Mueller <macslow@bangang.de>
+
+	* cairo-clock.c: Made cairo-clock compile again (updated rsvg_* calls)
+
+	* ChangeLog: Fixed some of the formatting
+
+2006-01-27 Mirco Mueller <macslow@bangang.de>
+
+	The cairo-clock.c now uses librsvg to load all parts of the clock as SVG
+	files. Some command-line paramters can now be use to alter the initial
+	behaviour of the clock. Overall performance is much better now!
+
+2006-01-22 Mirco Mueller <macslow@bangang.de>
+
+	On request by Carl Worth I'm doing the initial commit of this ahead of
+	"schedule" so he has a few more bullets for his eye-candy-gun to fire at
+	the crowed during linux.conf.au 2006 (gee, I'm talking out of my @!#?
+	again :). I hope everybody will enjoy these early pretty-pixels. This
+	stuff lands at the usual place at cvs.cairographics.org. I think...
+
+		cvs.freedesktop.org:/cvs/cairo/cairo-demo/cairo-candy
+
+	will be a good place for those to live.

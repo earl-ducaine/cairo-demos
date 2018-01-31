@@ -1,0 +1,91 @@
+#snippets       { position: relative;}
+
+#snippet        { padding-left: 10pt;}
+#snippet_title :link { text-decoration:none}
+#snippet_title :visited { text-decoration:none}
+#snippet_image  { top: 10pt; float:right; padding-right:10pt;}
+
+
+#snippet_page_title :link { text-decoration:none}
+#snippet_page_title :visited { text-decoration:none}
+#snippet_page_title  { position:relative; }
+
+#snippet_title  { position:relative; left: 40pt; font-size: 20pt; }
+#snippet_source { position:relative; left: 40pt; top: 8pt; font-size: 10pt;}
+
+#snippet_list   { float: left; width: 15%; height: 100%; z-index: 5; margin-right: 10pt; padding-left: 0pt;}
+#snippet_list_entry   { position: relative; font-size: 9pt;  width: 100%; }
+#snippet_list_entry_selected   { position: relative; font-size: 9pt;  width: 100%; background-color: #244;}
+
+#snippet_list_entry :link {text-decoration: none}
+#snippet_list_entry :visited {text-decoration: none}
+
+#snippet_list_entry_selected :link {text-decoration: none;     color: #fff;}
+#snippet_list_entry_selected :visited {text-decoration: none;  color: #fff;}
+
+
+#snippet_next   { position: fixed; left: 65pt; padding-left: 8pt; padding-right: 8pt; 
+                  padding-top: 2pt;
+                  padding-bottom: 2pt;
+                  top:  10pt;  background-color: #fff; border: 1pt solid #000;}
+#snippet_prev   { position: fixed; left: 20pt; padding-left: 8pt; padding-right: 8pt; top: 10pt;   background-color: #fff; border: 1pt solid #000;
+                  padding-top: 2pt;
+                  padding-bottom: 2pt;
+}
+
+#main { width: 95%; margin: 0pt auto; }
+#logo { text-align: center; margin-bottom: 10px; }
+#nav1 { 
+	font-family: Bitstream Vera Sans, sans-serif;
+	text-align: center;
+	word-spacing: 4pt;
+	background-color: #ffffff;
+	color: #3B80AE;
+	border: 0pt solid #bababa;
+	font-size: 15pt;
+	padding: 0pt;
+}
+#nav1 :link { color: #3B80AE; }
+#nav1 :visited { color: #3B80AE; }
+#nav2 { 
+	font-family: Bitstream Vera Sans, sans-serif;
+	text-align: center;
+	word-spacing: 4pt;
+	color: #3B80AE;
+	background-color: #ffffff;
+	border: 0pt solid #bababa;
+	font-size: 10pt;
+	padding: 0pt; 
+	margin-top: 8pt;
+	margin-bottom: 8pt; 
+}
+#nav2 :link { color: #3B80AE; }
+#nav2 :visited { color: #3B80AE; }
+#bottom {
+	font-family: Bitstream Vera Sans, sans-serif;
+	text-align: center;
+	background-color: #ffffff;
+	color: #3B80AE;
+	border: 0pt solid #bababa;
+	font-size: 7pt;
+	padding: 0pt;
+	margin-top: 0pt;
+	vertical-align: middle;
+}
+#bottom :link { color: #3B80AE; }
+#bottom :visited { color: #3B80AE; }
+hr { border: 1pt solid #333; margin: 2pt; }
+body { background-color: #fff; }
+h1, h2, h3, h4, h5, h6,
+h1 *, h2 *, h3 *, h3 *, h5 *, h6 * {
+	font-family: Bitstream Vera Sans, sans-serif;
+	color: #2b5e82;
+}
+#register { text-align: right; }
+#path { text-align: left; }
+a:link {
+  color: #2b5e82;
+}
+a:visited {
+  color: #000;
+}

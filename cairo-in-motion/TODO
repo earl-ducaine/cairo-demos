@@ -1,0 +1,17 @@
+finish the cairomm-related use of dealing with PNG-images (image, image_pattern,
+moving_clip_image)
+
+support for glitz-surfaces would be nice, so one can switch between "normal" and
+glitz-surfaces at runtime to see the impact on performance
+
+fps-couter
+
+class CairoSamples should be a bit more sophisticated in dealing with the
+function-pointers to all the included samples, this would also make do_sample()
+a lot leaner
+
+doing a fully dynamic (runtime-) loading of the samples would be the ultimate
+goal, thus also ghosting (or hiding) those controlling widgets that don't affect
+a particular sample
+
+more cool-looking animated samples
