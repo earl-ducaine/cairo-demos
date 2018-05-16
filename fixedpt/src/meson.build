@@ -2,21 +2,20 @@ headers = [
 ]
 
 private_headers = [
+  'fixedpt/fixedptc.h'
 ]
 
-# deps = [_dep]
+deps = [
+]
 
 # Internal configuration header
 configure_file(output: 'config.h',
                configuration: conf)
-)
 
 sources = files([
   'main.c'
 ])
 
-executable('FP-PERF-EXP', sources,
-  dependencies : deps,
-  include_directories : inc,
-  install : true
-fi
+executable('fp-perf-exp', sources,
+           dependencies : deps,
+           install : true)

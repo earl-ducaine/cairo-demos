@@ -77,8 +77,6 @@ conf.set('HAVE_STDBOOL_H', cc.has_header('stdbool.h'),
          description: 'Define if stdbool.h is available')
 conf.set('HAVE_MEMORY_H', cc.has_header('memory.h'),
          description: 'Define if memory.h is available')
-conf.set('HAVE_PTHREAD_H', cc.has_header('pthread.h', dependencies: threadlib),
-         description: 'Define if pthread.h is available')
 
 # Debugging
 debug_flags = []
@@ -88,7 +86,5 @@ if buildtype == 'release'
 elif buildtype.startswith('debug')
   debug_flags += [ '-D_ENABLE_DEBUG' ]
 endif
-# _dep = dependency('')
 
-inc = include_directories('.')
 subdir('src')
