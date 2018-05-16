@@ -20,13 +20,40 @@
 
 #define MAX_OPERATIONS (1024)
 
-// TODO: Define these for all data types
-void add() {}
-void subtract() {}
-void multiply() {}
-void divide() {}
-void square() {}
-void square_root() {}
+void i_add(int a, int b, int *result) { *result = a + b; }
+void i_subtract() {}
+void i_multiply() {}
+void i_divide() {}
+void i_square() {}
+void i_square_root() {}
+
+void f_add(float a, float b, float *result) { *result = a + b; }
+void f_subtract() {}
+void f_multiply() {}
+void f_divide() {}
+void f_square() {}
+void f_square_root() {}
+
+void d_add(double a, double b, double *result) { *result = a + b; }
+void d_subtract() {}
+void d_multiply() {}
+void d_divide() {}
+void d_square() {}
+void d_square_root() {}
+
+void q16_16_add(int a, int b, int *result) { *result = a + b; }
+void q16_16_subtract() {}
+void q16_16_multiply() {}
+void q16_16_divide() {}
+void q16_16_square() {}
+void q16_16_square_root() {}
+
+void q32_32_add(int a, int b, int *result) { *result = a + b; }
+void q32_32_subtract() {}
+void q32_32_multiply() {}
+void q32_32_divide() {}
+void q32_32_square() {}
+void q32_32_square_root() {}
 
 typedef enum _operation {
   OP_SQRT = -3,
@@ -106,7 +133,7 @@ int main() {
   // Note where range errors occur
   for (int i=0; i<num_operations; i++) {
     printf("%d + %d", result, numbers[i]);
-    result = result + numbers[i];
+    i_add(result, numbers[i], &result);
     printf(" = %d\n", result);
   }
   printf("Final result is %d\n", result);
