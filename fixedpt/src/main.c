@@ -6,6 +6,7 @@
  * Released under gpl-2.0, read the file 'COPYING' for more information.
  */
 
+#include <stdbool.h>
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -14,6 +15,8 @@
 
 #define FIXEDPT_BITS (64)
 #include "fixedpt/fixedptc.h"
+
+#include "utils.h"
 
 #define MAX_OPERATIONS (1024)
 
@@ -69,25 +72,42 @@ int randint(int n) {
   }
 }
 
+/* Generate a sequence of operations to perform */
+void generate_operations(int num, operation_t *operations, operation_t max_op) {
+
+  // TODO: Do sets of ops in short sequences
+  for (int i=0; i<num; i++) {
+    operations[i] = randint(max_op);
+  }
+}
+
+/* Generate a random array of numbers between 0 and max_val */
+void generate_numbers(int num, int *numbers, int max_val) {
+  for (int i=0; i<num; i++) {
+    numbers[i] = randint(max_val);
+  }
+}
+
 int main() {
   // Generate a random sequence of operations, and their opposites
   operation_t operations[MAX_OPERATIONS];
+  int numbers[MAX_OPERATIONS];
   int num_operations = 10;
+  int max_range = 42;
+  int result = 0;
 
   srand(time(0));
 
   assert(num_operations <= MAX_OPERATIONS);
-  for (int i=0; i<num_operations; i++) {
-    operations[i] = randint(OP_LAST);
-  }
-
-  // Do sets of ops in short sequences
-
-  // Run for several numerical ranges - small, medium, large, huge
+  generate_operations(num_operations, operations, OP_LAST);
+  generate_numbers(num_operations, numbers, max_range);
 
   // Compare performance
   // Note where range errors occur
   for (int i=0; i<num_operations; i++) {
-    printf("Hello operation %d\n", operations[i]);
+    printf("%d + %d", result, numbers[i]);
+    result = result + numbers[i];
+    printf(" = %d\n", result);
   }
+  printf("Final result is %d\n", result);
 }

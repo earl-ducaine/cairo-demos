@@ -2,7 +2,8 @@ headers = [
 ]
 
 private_headers = [
-  'fixedpt/fixedptc.h'
+  'fixedpt/fixedptc.h',
+  'utils.h'
 ]
 
 deps = [
