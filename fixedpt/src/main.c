@@ -20,12 +20,35 @@
 
 #define MAX_OPERATIONS (1024)
 
-void i_add(int a, int b, int *result) { *result = a + b; }
-void i_subtract() {}
-void i_multiply() {}
-void i_divide() {}
-void i_square() {}
-void i_square_root() {}
+typedef enum _operation {
+  OP_ADD = 0,  OP_SUB  = 1,
+  OP_MUL = 2,  OP_DIV  = 3,
+  OP_SQR = 4,  OP_SQRT = 5,
+
+  OP_LAST
+} operation_t;
+
+const char *operation_symbols[] = {
+  "+", "-",
+  "×", "÷",
+  "²", "√"
+};
+
+typedef void (i_operation)(int a, int b, int *result);
+void i_add(int a, int b, int *result)                 { *result = a + b; }
+void i_subtract(int a, int b, int *result)            { *result = a - b; }
+void i_multiply(int a, int b, int *result)            { *result = a * b; }
+void i_divide(int a, int b, int *result)              { *result = a / b; }
+void i_square(int a, int UNUSED(b), int *result)      { *result = a * a; }
+void i_square_root(int a, int UNUSED(b), int *result) { *result = a; /* TODO: Implement */ }
+i_operation *i_operations[OP_LAST] = {
+    i_add,
+    i_subtract,
+    i_multiply,
+    i_divide,
+    i_square,
+    i_square_root
+};
 
 void f_add(float a, float b, float *result) { *result = a + b; }
 void f_subtract() {}
@@ -54,20 +77,6 @@ void q32_32_multiply() {}
 void q32_32_divide() {}
 void q32_32_square() {}
 void q32_32_square_root() {}
-
-typedef enum _operation {
-  OP_SQRT = -3,
-  OP_DIV = -2,
-  OP_SUB = -1,
-
-  OP_NONE = 0,
-
-  OP_ADD = 1,
-  OP_MUL = 2,
-  OP_SQR = 3,
-
-  OP_LAST = 4
-} operation_t;
 
 /* Returns an integer in the range [0, n).
  *
@@ -132,8 +141,15 @@ int main() {
   // Compare performance
   // Note where range errors occur
   for (int i=0; i<num_operations; i++) {
-    printf("%d + %d", result, numbers[i]);
-    i_add(result, numbers[i], &result);
+    int op = operations[i];
+    if (op == OP_SQR) {
+      printf("%d%s", result, operation_symbols[op]);
+    } else if (op == OP_SQRT) {
+      printf("%s%d", operation_symbols[op], result);
+    } else {
+      printf("%d %s %d", result, operation_symbols[op], numbers[i]);
+    }
+    i_operations[op](result, numbers[i], &result);
     printf(" = %d\n", result);
   }
   printf("Final result is %d\n", result);
