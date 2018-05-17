@@ -19,6 +19,54 @@
 
 #include "utils.h"
 
+/**
+ * @brief Fast Square root algorithm, with rounding
+ *
+ * This does arithmetic rounding of the result. That is, if the real answer
+ * would have a fractional part of 0.5 or greater, the result is rounded up to
+ * the next integer.
+ *   - SquareRootRounded(2) --> 1
+ *   - SquareRootRounded(3) --> 2
+ *   - SquareRootRounded(4) --> 2
+ *   - SquareRootRounded(6) --> 2
+ *   - SquareRootRounded(7) --> 3
+ *   - SquareRootRounded(8) --> 3
+ *   - SquareRootRounded(9) --> 3
+ *
+ * Ref. https://stackoverflow.com/questions/1100090/looking-for-an-efficient-integer-square-root-algorithm-for-arm-thumb2
+ *
+ * @param[in] a_nInput - unsigned integer for which to find the square root
+ *
+ * @return Integer square root of the input value.
+ */
+uint32_t i_square_root_rounded(uint32_t a_nInput) {
+  uint32_t op  = a_nInput;
+  uint32_t res = 0;
+  uint32_t one = 1uL << 30;
+  // The second-to-top bit is set: use 1u << 14 for uint16_t type; use 1uL<<30 for uint32_t type
+
+  // "one" starts at the highest power of four <= than the argument.
+  while (one > op) {
+    one >>= 2;
+  }
+
+  while (one != 0) {
+    if (op >= res + one) {
+      op = op - (res + one);
+      res = res +  2 * one;
+    }
+    res >>= 1;
+    one >>= 2;
+  }
+
+  /* Do arithmetic rounding to nearest integer */
+  if (op > res) {
+    res++;
+  }
+
+  return res;
+}
+
 #define MAX_OPERATIONS (1024)
 
 typedef enum _operation {
@@ -41,7 +89,7 @@ void i_subtract(int a, int b, int *result)            { *result = a - b; }
 void i_multiply(int a, int b, int *result)            { *result = a * b; }
 void i_divide(int a, int b, int *result)              { *result = a / b; }
 void i_square(int a, int UNUSED(b), int *result)      { *result = a * a; }
-void i_square_root(int a, int UNUSED(b), int *result) { *result = a; /* TODO: Implement */ }
+void i_square_root(int a, int UNUSED(b), int *result) { *result = i_square_root_rounded(a); }
 i_operation *i_operations[OP_LAST] = {
     i_add,
     i_subtract,
@@ -118,7 +166,7 @@ void generate_operations(int num, operation_t *operations, operation_t max_op) {
   }
 }
 
-/* Generate a random array of numbers between 0 and max_val */
+/* Generate a random array of non-zero numbers between 0 and max_val */
 void generate_numbers(int num, int *numbers, int max_val) {
   for (int i=0; i<num; i++) {
     numbers[i] = randint(max_val);
@@ -160,6 +208,7 @@ int main() {
     } else {
       printf("%d %s %d", result, operation_symbols[op], numbers[i]);
     }
+    fflush(stdout);
     i_operations[op](result, numbers[i], &result);
     printf(" = %d\n", result);
   }
