@@ -11,6 +11,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <sys/time.h>
 #include <assert.h>
 
 #define FIXEDPT_BITS (64)
@@ -124,13 +125,22 @@ void generate_numbers(int num, int *numbers, int max_val) {
   }
 }
 
+double
+get_tick (void)
+{
+    struct timeval now;
+    gettimeofday (&now, NULL);
+    return (double)now.tv_sec + (double)now.tv_usec / 1000000.0;
+}
+
 int main() {
   // Generate a random sequence of operations, and their opposites
   operation_t operations[MAX_OPERATIONS];
   int numbers[MAX_OPERATIONS];
-  int num_operations = 10;
+  int num_operations = 100;
   int max_range = 42;
   int result = 0;
+  double start_time, stop_time, run_time;
 
   srand(time(0));
 
@@ -140,6 +150,7 @@ int main() {
 
   // Compare performance
   // Note where range errors occur
+  start_time = get_tick();
   for (int i=0; i<num_operations; i++) {
     int op = operations[i];
     if (op == OP_SQR) {
@@ -152,5 +163,8 @@ int main() {
     i_operations[op](result, numbers[i], &result);
     printf(" = %d\n", result);
   }
-  printf("Final result is %d\n", result);
+  stop_time = get_tick();
+  run_time = stop_time - start_time;
+
+  printf("Final result is %d in %f seconds\n", result, run_time);
 }
