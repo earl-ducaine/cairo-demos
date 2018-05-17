@@ -166,10 +166,10 @@ void generate_operations(int num, operation_t *operations, operation_t max_op) {
   }
 }
 
-/* Generate a random array of non-zero numbers between 0 and max_val */
+/* Generate a random array of non-zero numbers between 1 and max_val */
 void generate_numbers(int num, int *numbers, int max_val) {
   for (int i=0; i<num; i++) {
-    numbers[i] = randint(max_val);
+    numbers[i] = randint(max_val-1) + 1;
   }
 }
 
