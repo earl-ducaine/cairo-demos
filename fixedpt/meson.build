@@ -66,6 +66,9 @@ if host_system == 'linux'
   endforeach
 endif
 
+# Required dependencies
+mathlib = cc.find_library('m', required: false)
+
 # Headers
 conf = configuration_data()
 
@@ -77,6 +80,14 @@ conf.set('HAVE_STDBOOL_H', cc.has_header('stdbool.h'),
          description: 'Define if stdbool.h is available')
 conf.set('HAVE_MEMORY_H', cc.has_header('memory.h'),
          description: 'Define if memory.h is available')
+
+# Look for sincosf(), a GNU libc extension
+conf.set('HAVE_SINCOSF',
+         cc.has_function('sincosf',
+                         prefix: '#include <math.h>',
+                         args: [ '-D_GNU_SOURCE' ],
+                         dependencies: mathlib),
+         description: 'Define if sincosf() is available')
 
 # Debugging
 debug_flags = []
