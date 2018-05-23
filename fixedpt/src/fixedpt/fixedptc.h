@@ -5,13 +5,20 @@
  * fixedptc.h is a 32-bit or 64-bit fixed point numeric library.
  *
  * The symbol FIXEDPT_BITS, if defined before this library header file
- * is included, governs the number of bits in the data type (its "width").
+ * is included, determines the number of bits in the data type (its "width").
  * The default width is 32-bit (FIXEDPT_BITS=32) and it can be used
  * on any recent C99 compiler. The 64-bit precision (FIXEDPT_BITS=64) is
  * available on compilers which implement 128-bit "long long" types. This
  * precision has been tested on GCC 4.2+.
  *
- * Since the precision in both cases is relatively low, many complex
+ * The FIXEDPT_WBITS symbols governs how many bits are dedicated to the
+ * "whole" part of the number (to the left of the decimal point). The larger
+ * this width is, the larger the numbers which can be stored in the fixedpt
+ * number. The rest of the bits (available in the FIXEDPT_FBITS symbol) are
+ * dedicated to the fraction part of the number (to the right of the decimal
+ * point).
+ *
+ * Since the number of bits in both cases is relatively low, many complex
  * functions (more complex than div & mul) take a large hit on the precision
  * of the end result because errors in precision accumulate.
  * This loss of precision can be lessened by increasing the number of
@@ -65,6 +72,8 @@
 #define FIXEDPT_BITS	32
 #endif
 
+#include <stdint.h>
+
 #if FIXEDPT_BITS == 32
 typedef int32_t fixedpt;
 typedef	int64_t	fixedptd;
@@ -87,13 +96,12 @@ typedef	__uint128_t fixedptud;
 #error "FIXEDPT_WBITS must be less than or equal to FIXEDPT_BITS"
 #endif
 
-#define FIXEDPT_VCSID "$Id: fixedptc.h,v 00c74d842389 2012/07/17 23:30:18 ivoras $"
+#define FIXEDPT_VCSID "$Id$"
 
 #define FIXEDPT_FBITS	(FIXEDPT_BITS - FIXEDPT_WBITS)
 #define FIXEDPT_FMASK	(((fixedpt)1 << FIXEDPT_FBITS) - 1)
 
-#define fixedpt_rconst(R) ((fixedpt)((R) * (((fixedptd)1 << FIXEDPT_FBITS) \
-	+ ((R) >= 0 ? 0.5 : -0.5))))
+#define fixedpt_rconst(R) ((fixedpt)((R) * FIXEDPT_ONE + ((R) >= 0 ? 0.5 : -0.5)))
 #define fixedpt_fromint(I) ((fixedptd)(I) << FIXEDPT_FBITS)
 #define fixedpt_toint(F) ((F) >> FIXEDPT_FBITS)
 #define fixedpt_add(A,B) ((A) + (B))
@@ -113,6 +121,11 @@ typedef	__uint128_t fixedptud;
 #define FIXEDPT_E	fixedpt_rconst(2.7182818284590452354)
 
 #define fixedpt_abs(A) ((A) < 0 ? -(A) : (A))
+
+/* fixedpt is meant to be usable in environments without floating point support
+ * (e.g. microcontrollers, kernels), so we can't use floating point types directly.
+ * Putting them only in macros will effectively make them optional. */
+#define fixedpt_tofloat(T) ((float) ((T)*((float)(1)/(float)(1 << FIXEDPT_FBITS))))
 
 
 /* Multiplies two fixedpt numbers, returns the result. */
@@ -155,7 +168,11 @@ fixedpt_str(fixedpt A, char *str, int max_dec)
 
 	if (max_dec == -1)
 #if FIXEDPT_BITS == 32
+#if FIXEDPT_WBITS > 16
 		max_dec = 2;
+#else
+		max_dec = 4;
+#endif
 #elif FIXEDPT_BITS == 64
 		max_dec = 10;
 #else
@@ -192,6 +209,7 @@ fixedpt_str(fixedpt A, char *str, int max_dec)
 	else
 		str[slen] = '\0';
 }
+
 
 /* Converts the given fixedpt number into a string, using a static
  * (non-threadsafe) string buffer */
