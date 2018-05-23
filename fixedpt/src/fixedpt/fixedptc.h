@@ -229,7 +229,8 @@ fixedpt_sqrt(fixedpt A)
 {
 	int invert = 0;
 	int iter = FIXEDPT_FBITS;
-	int l, i;
+	int i;
+	fixedpt l;
 
 	if (A < 0)
 		return (-1);
@@ -240,7 +241,7 @@ fixedpt_sqrt(fixedpt A)
 		A = fixedpt_div(FIXEDPT_ONE, A);
 	}
 	if (A > FIXEDPT_ONE) {
-		int s = A;
+		fixedpt s = A;
 
 		iter = 0;
 		while (s > 0) {
