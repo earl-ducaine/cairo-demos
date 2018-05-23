@@ -183,7 +183,7 @@ fixedpt_str(fixedpt A, char *str, int max_dec)
 
 	if (A < 0) {
 		str[slen++] = '-';
-		A *= -1;
+		A=~A; //A *= -1;
 	}
 
 	ip = fixedpt_toint(A);
