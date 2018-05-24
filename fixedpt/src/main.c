@@ -10,10 +10,17 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 #include <time.h>
 #include <sys/time.h>
 #include <assert.h>
 
+//#define DEBUG (1)
+#define MAX_OPERATIONS (100)
+#define MAX_RANGE (8)
+#define INITIAL_VALUE (2)
+
+// Set this to 32 or 64 to test the two different number types
 #define FIXEDPT_BITS (64)
 #include "fixedpt/fixedptc.h"
 
@@ -67,8 +74,6 @@ uint32_t i_square_root_rounded(uint32_t a_nInput) {
   return res;
 }
 
-#define MAX_OPERATIONS (1024)
-
 typedef enum _operation {
   OP_ADD = 0,  OP_SUB  = 1,
   OP_MUL = 2,  OP_DIV  = 3,
@@ -89,7 +94,7 @@ void i_subtract(int a, int b, int *result)            { *result = a - b; }
 void i_multiply(int a, int b, int *result)            { *result = a * b; }
 void i_divide(int a, int b, int *result)              { *result = a / b; }
 void i_square(int a, int UNUSED(b), int *result)      { *result = a * a; }
-void i_square_root(int a, int UNUSED(b), int *result) { *result = i_square_root_rounded(a); }
+void i_square_root(int a, int UNUSED(b), int *result) { *result = i_square_root_rounded(abs(a)); }
 i_operation *i_operations[OP_LAST] = {
     i_add,
     i_subtract,
@@ -99,33 +104,56 @@ i_operation *i_operations[OP_LAST] = {
     i_square_root
 };
 
-void f_add(float a, float b, float *result) { *result = a + b; }
-void f_subtract() {}
-void f_multiply() {}
-void f_divide() {}
-void f_square() {}
-void f_square_root() {}
+typedef void (f_operation)(float a, float b, float *result);
+void f_add(float a, float b, float *result)                    { *result = a + b; }
+void f_subtract(float a, float b, float *result)               { *result = a - b; }
+void f_multiply(float a, float b, float *result)               { *result = a * b; }
+void f_divide(float a, float b, float *result)                 { *result = a / b; }
+void f_square(float a, float UNUSED(b), float *result)         { *result = a * a; }
+void f_square_root(float a, float UNUSED(b), float *result)    { *result = sqrt(fabs(a)); }
+f_operation *f_operations[OP_LAST] = {
+    f_add,
+    f_subtract,
+    f_multiply,
+    f_divide,
+    f_square,
+    f_square_root
+};
 
-void d_add(double a, double b, double *result) { *result = a + b; }
-void d_subtract() {}
-void d_multiply() {}
-void d_divide() {}
-void d_square() {}
-void d_square_root() {}
+typedef void (d_operation)(double a, double b, double *result);
+void d_add(double a, double b, double *result)                 { *result = a + b; }
+void d_subtract(double a, double b, double *result)            { *result = a - b; }
+void d_multiply(double a, double b, double *result)            { *result = a * b; }
+void d_divide(double a, double b, double *result)              { *result = a / b; }
+void d_square(double a, double UNUSED(b), double *result)      { *result = a * a; }
+void d_square_root(double a, double UNUSED(b), double *result) { *result = sqrt(fabs(a)); }
+d_operation *d_operations[OP_LAST] = {
+    d_add,
+    d_subtract,
+    d_multiply,
+    d_divide,
+    d_square,
+    d_square_root
+};
 
-void q16_16_add(int a, int b, int *result) { *result = a + b; }
-void q16_16_subtract() {}
-void q16_16_multiply() {}
-void q16_16_divide() {}
-void q16_16_square() {}
-void q16_16_square_root() {}
+typedef void (fp_operation)(fixedpt a, fixedpt b, fixedpt *result);
+void fp_add(fixedpt a, fixedpt b, fixedpt *result) { *result = fixedpt_add(a, b); }
+void fp_subtract(fixedpt a, fixedpt b, fixedpt *result) { *result = fixedpt_sub(a, b); }
+void fp_multiply(fixedpt a, fixedpt b, fixedpt *result) { *result = fixedpt_mul(a, b); }
+void fp_divide(fixedpt a, fixedpt b, fixedpt *result) { *result = fixedpt_div(a, b); }
+void fp_square(fixedpt a, fixedpt UNUSED(b), fixedpt *result) { *result = fixedpt_mul(a, a); }
+void fp_square_root(fixedpt a, fixedpt UNUSED(b), fixedpt *result) {
+  *result = fixedpt_sqrt(fixedpt_abs(a));
+}
+fp_operation *fp_operations[OP_LAST] = {
+    fp_add,
+    fp_subtract,
+    fp_multiply,
+    fp_divide,
+    fp_square,
+    fp_square_root
+};
 
-void q32_32_add(int a, int b, int *result) { *result = a + b; }
-void q32_32_subtract() {}
-void q32_32_multiply() {}
-void q32_32_divide() {}
-void q32_32_square() {}
-void q32_32_square_root() {}
 
 /* Returns an integer in the range [0, n).
  *
@@ -181,39 +209,128 @@ get_tick (void)
     return (double)now.tv_sec + (double)now.tv_usec / 1000000.0;
 }
 
+
 int main() {
   // Generate a random sequence of operations, and their opposites
   operation_t operations[MAX_OPERATIONS];
   int numbers[MAX_OPERATIONS];
-  int num_operations = 100;
-  int max_range = 42;
-  int result = 0;
+  int num_operations = MAX_OPERATIONS;
   double start_time, stop_time, run_time;
 
   srand(time(0));
 
   assert(num_operations <= MAX_OPERATIONS);
   generate_operations(num_operations, operations, OP_LAST);
-  generate_numbers(num_operations, numbers, max_range);
+  generate_numbers(num_operations, numbers, MAX_RANGE);
 
-  // Compare performance
-  // Note where range errors occur
-  start_time = get_tick();
-  for (int i=0; i<num_operations; i++) {
-    int op = operations[i];
-    if (op == OP_SQR) {
-      printf("%d%s", result, operation_symbols[op]);
-    } else if (op == OP_SQRT) {
-      printf("%s%d", operation_symbols[op], result);
-    } else {
-      printf("%d %s %d", result, operation_symbols[op], numbers[i]);
+  // INTEGER
+  // -------
+  {
+    int result = INITIAL_VALUE;
+    start_time = get_tick();
+    for (int i=0; i<num_operations; i++) {
+      int op = operations[i];
+#ifdef DEBUG
+      if (op == OP_SQR) {
+	printf("%d%s", result, operation_symbols[op]);
+      } else if (op == OP_SQRT) {
+	printf("%s%d", operation_symbols[op], result);
+      } else {
+	printf("%d %s %d", result, operation_symbols[op], numbers[i]);
+      }
+      fflush(stdout);
+#endif
+      i_operations[op](result, numbers[i], &result);
+#ifdef DEBUG
+      printf(" = %d\n", result);
+#endif
     }
-    fflush(stdout);
-    i_operations[op](result, numbers[i], &result);
-    printf(" = %d\n", result);
-  }
-  stop_time = get_tick();
-  run_time = stop_time - start_time;
+    stop_time = get_tick();
+    run_time = stop_time - start_time;
 
-  printf("Final result is %d in %f seconds\n", result, run_time);
+    printf("Integer result is %d in %f msecs\n\n", result, run_time*1000);
+  }
+
+  // FLOAT
+  // -----
+  {
+    float result = INITIAL_VALUE;
+    start_time = get_tick();
+    for (int i=0; i<num_operations; i++) {
+      int op = operations[i];
+#ifdef DEBUG
+      if (op == OP_SQR) {
+	printf("%f%s", result, operation_symbols[op]);
+      } else if (op == OP_SQRT) {
+	printf("%s%f", operation_symbols[op], result);
+      } else {
+	printf("%f %s %d", result, operation_symbols[op], numbers[i]);
+      }
+      fflush(stdout);
+#endif
+      f_operations[op](result, (float)numbers[i], &result);
+#ifdef DEBUG
+      printf(" = %f\n", result);
+#endif
+    }
+    stop_time = get_tick();
+    run_time = stop_time - start_time;
+
+    printf("Float result is %f in %f msecs\n\n", result, run_time*1000);
+  }
+
+  // DOUBLE
+  {
+    double result = INITIAL_VALUE;
+    start_time = get_tick();
+    for (int i=0; i<num_operations; i++) {
+      int op = operations[i];
+#ifdef DEBUG
+      if (op == OP_SQR) {
+	printf("%f%s", result, operation_symbols[op]);
+      } else if (op == OP_SQRT) {
+	printf("%s%f", operation_symbols[op], result);
+      } else {
+	printf("%f %s %d", result, operation_symbols[op], numbers[i]);
+      }
+      fflush(stdout);
+#endif
+      d_operations[op](result, (double)numbers[i], &result);
+#ifdef DEBUG
+      printf(" = %f\n", result);
+#endif
+    }
+    stop_time = get_tick();
+    run_time = stop_time - start_time;
+
+    printf("Double precision result is %f in %f msecs\n\n", result, run_time*1000);
+  }
+
+  // FIXED-POINT
+  {
+    fixedpt result = fixedpt_fromint(INITIAL_VALUE);
+    start_time = get_tick();
+    for (int i=0; i<num_operations; i++) {
+      int op = operations[i];
+#ifdef DEBUG
+      if (op == OP_SQR) {
+	printf("%s%s", fixedpt_cstr(result, -1), operation_symbols[op]);
+      } else if (op == OP_SQRT) {
+	printf("%s%s", operation_symbols[op], fixedpt_cstr(result, -1));
+      } else {
+	printf("%s %s %d", fixedpt_cstr(result, -1), operation_symbols[op], numbers[i]);
+      }
+      fflush(stdout);
+#endif
+      fp_operations[op](result, fixedpt_fromint(numbers[i]), &result);
+#ifdef DEBUG
+      printf(" = %s\n", fixedpt_cstr(result, -1));
+#endif
+    }
+    stop_time = get_tick();
+    run_time = stop_time - start_time;
+
+    printf("Fixed point result is %s in %f msecs\n\n", fixedpt_cstr(result, -1), run_time*1000);
+  }
+
 }

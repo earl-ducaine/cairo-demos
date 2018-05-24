@@ -1,8 +1,9 @@
 == Todo list for fp-perf-exp ==
 
-* Fill in README.md
+√ Fill in README.md
 √ Add other source code files to src/meson.build
 √ Flesh out main.c
-* Merge fixes back into mkrepo
+√ Flesh out stubbed operation routines
 
-* Flesh out stubbed operation routines
+For a non-SSE version of fixedptc.h, see
+   https://github.com/andrewray/mirage-kfreebsd/blob/master/fixpt/fixedptc.h

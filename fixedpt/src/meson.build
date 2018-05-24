@@ -7,6 +7,7 @@ private_headers = [
 ]
 
 deps = [
+  mathlib
 ]
 
 # Internal configuration header

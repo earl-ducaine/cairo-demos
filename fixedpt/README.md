@@ -29,6 +29,7 @@ Building Fp-Perf-Exp is fairly straightforward:
 
 ### Dependencies
 
- * None
+ * libm
+
 
 
