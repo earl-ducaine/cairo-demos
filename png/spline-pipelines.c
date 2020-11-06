@@ -33,7 +33,7 @@
  *	http://antigrain.com/tips/line_alignment/conv_order.gif
  */
 
-#include <cairo.h>
+#include <cairo/cairo.h>
 #include <stdio.h>
 #include <stdlib.h>
 

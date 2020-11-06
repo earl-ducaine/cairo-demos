@@ -25,7 +25,7 @@
  * Author: Carl D. Worth <cworth@isi.edu>
  */
 
-#include <cairo.h>
+#include <cairo/cairo.h>
 #include <math.h>
 
 #define TEXT "hello, world"

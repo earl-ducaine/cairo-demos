@@ -1,9 +1,11 @@
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
 
-#include <cairo.h>
-#include <cairo-xlib.h>
+#include <cairo/cairo.h>
+#include <cairo/cairo-xlib.h>
+#include <X11/Xlib.h>
 
 #define PI 3.1415926535
 
@@ -67,7 +69,7 @@ square(cairo_t *cr)
     cairo_move_to(cr, 0, 0);
     cairo_rel_line_to(cr,  2*SIZE,   0);
     cairo_rel_line_to(cr,   0,  2*SIZE);
-    cairo_rel_line_to(cr, -2*SIZE,   0); 
+    cairo_rel_line_to(cr, -2*SIZE,   0);
     cairo_close_path(cr);
 }
 
@@ -76,7 +78,7 @@ bowtie(cairo_t *cr)
 {
     cairo_move_to(cr, 0, 0);
     cairo_rel_line_to(cr,  2*SIZE,  2*SIZE);
-    cairo_rel_line_to(cr, -2*SIZE,   0); 
+    cairo_rel_line_to(cr, -2*SIZE,   0);
     cairo_rel_line_to(cr,  2*SIZE, -2*SIZE);
     cairo_close_path(cr);
 }
@@ -316,7 +318,7 @@ win_handle_events(win_t *win)
 	case KeyPress:
 	{
 	    XKeyEvent *kev = &xev.xkey;
-	    
+
 	    if (kev->keycode == win->quit_code) {
 		return;
 	    }

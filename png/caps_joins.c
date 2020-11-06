@@ -25,7 +25,7 @@
  * Author: Carl D. Worth <cworth@isi.edu>
  */
 
-#include <cairo.h>
+#include <cairo/cairo.h>
 
 void
 draw_caps_joins (cairo_t *cr, int width, int height);
@@ -116,6 +116,3 @@ draw_caps_joins (cairo_t *cr, int width, int height)
     cairo_set_line_cap (cr, CAIRO_LINE_CAP_ROUND);
     stroke_v_twice (cr, width, height);
 }
-
-
-

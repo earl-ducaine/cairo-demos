@@ -25,7 +25,7 @@
  * Author: Carl D. Worth <cworth@isi.edu>
  */
 
-#include <cairo.h>
+#include <cairo/cairo.h>
 
 void
 draw_outlines (cairo_t *cr, int surface_width, int surface_height);

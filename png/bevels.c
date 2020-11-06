@@ -51,7 +51,7 @@
  * could become more scalable.
  */
 
-#include <cairo.h>
+#include <cairo/cairo.h>
 #include <math.h>
 #include <stdint.h>
 
@@ -310,4 +310,3 @@ main (void)
 
     return 0;
 }
-

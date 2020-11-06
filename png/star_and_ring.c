@@ -23,7 +23,7 @@
  * Author: Carl D. Worth <cworth@cworth.org>
  */
 
-#include <cairo.h>
+#include <cairo/cairo.h>
 #include <math.h>
 
 #define WIDTH 600
@@ -79,7 +79,7 @@ star_path (cairo_t *cr)
 {
     cairo_matrix_t matrix;
 
-    cairo_matrix_init (&matrix, 
+    cairo_matrix_init (&matrix,
 			     0.647919, -0.761710,
 			     0.761710, 0.647919,
 			     -208.7977, 462.0608);
@@ -119,7 +119,7 @@ fill_star (cairo_t *cr)
     star_path (cr);
     cairo_set_source_rgba (cr, 0.0, 0.0, (double) 0xae / 0xff, 0.55135137);
     cairo_fill (cr);
-    
+
     cairo_restore (cr);
 }
 

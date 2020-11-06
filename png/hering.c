@@ -25,7 +25,7 @@
  * Author: Carl D. Worth <cworth@isi.edu>
  */
 
-#include <cairo.h>
+#include <cairo/cairo.h>
 #include <math.h>
 
 void
@@ -78,12 +78,12 @@ draw_hering (cairo_t *cr, int width, int height)
     {
 	cairo_translate (cr, width / 2, height / 2);
 	cairo_rotate (cr, MAX_THETA);
-	
+
 	for (i=0; i < LINES; i++) {
 	    cairo_move_to (cr, -2 * width, 0);
 	    cairo_line_to (cr, 2 * width, 0);
 	    cairo_stroke (cr);
-	    
+
 	    cairo_rotate (cr, - THETA_INC);
 	}
     }

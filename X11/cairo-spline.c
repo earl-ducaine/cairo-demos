@@ -3,8 +3,8 @@
 #include <unistd.h>
 #include <math.h>
 
-#include <cairo.h>
-#include <cairo-xlib.h>
+#include <cairo/cairo.h>
+#include <cairo/cairo-xlib.h>
 
 #define EPSILON (1.0 / (2<<16))
 #define ARRAY_SIZE(a) (sizeof(a)/sizeof(a[0]))
@@ -329,7 +329,7 @@ win_deinit(win_t *win)
 static void
 win_select_events(win_t *win)
 {
-    win->event_mask = 
+    win->event_mask =
 	  ButtonPressMask
 	| ButtonReleaseMask
 	| PointerMotionMask
@@ -373,7 +373,7 @@ win_handle_button_press(win_t *win, XButtonEvent *bev)
     win->click = 1;
     win->drag_pt.x = bev->x;
     win->drag_pt.y = bev->y;
- 
+
     win->needs_refresh = 1;
 }
 
@@ -406,7 +406,7 @@ win_handle_key_press(win_t *win, XKeyEvent *kev)
     for (i=0; i < ARRAY_SIZE(key_binding); i++)
 	if (key_binding[i].keycode == kev->keycode)
 	    return (key_binding[i].callback)(win);
-	
+
     return 0;
 }
 

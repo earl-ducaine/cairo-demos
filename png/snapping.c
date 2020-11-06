@@ -40,7 +40,7 @@
  * grid.
  */
 
-#include <cairo.h>
+#include <cairo/cairo.h>
 #include <math.h>
 
 #define WIDTH 175
@@ -226,7 +226,7 @@ snap_path_for_fill (cairo_t *cr)
     int i;
     cairo_path_t *path;
     cairo_path_data_t *data;
-  
+
     snap_path_closure_t spc;
 
     spc.first = 1;
@@ -234,7 +234,7 @@ snap_path_for_fill (cairo_t *cr)
     spc.cr = cr;
 
     path = cairo_copy_path (cr);
-  
+
     for (i=0; i < path->num_data; i += path->data[i].header.length) {
 	data = &path->data[i];
 	switch (data->header.type) {
@@ -254,7 +254,7 @@ snap_path_for_fill (cairo_t *cr)
 	    break;
 	}
     }
-  
+
     cairo_path_destroy (path);
 }
 
@@ -274,7 +274,7 @@ snap_path_for_stroke (cairo_t *cr)
     snap_line_width (cr);
 
     path = cairo_copy_path (cr);
-  
+
     for (i=0; i < path->num_data; i += path->data[i].header.length) {
 	data = &path->data[i];
 	switch (data->header.type) {
@@ -294,7 +294,7 @@ snap_path_for_stroke (cairo_t *cr)
 	    break;
 	}
     }
-  
+
     cairo_path_destroy (path);
 }
 
@@ -393,4 +393,3 @@ main (void)
 
     return 0;
 }
-

@@ -14,14 +14,14 @@
  */
 #include <X11/Xlib.h>
 #include <X11/Xutil.h>
-#include <cairo.h>
-#include <cairo-xlib.h>
+#include <cairo/cairo.h>
+#include <cairo/cairo-xlib.h>
 #include <math.h>
 #include <stdio.h>
 
 /* Create a path that is a circular oval with radii xr, yr at xc,
  * yc. Since we use cairo_arc here it will provide as many splines as
- * necessary to be extremely accurate. 
+ * necessary to be extremely accurate.
  */
 static void
 oval_path (cairo_t *cr,
@@ -54,7 +54,7 @@ fill_checks (cairo_t *cr,
 {
     cairo_surface_t *check;
     cairo_pattern_t *check_pattern;
-    
+
     cairo_save (cr);
 
 #define CHECK_SIZE 32
@@ -110,21 +110,21 @@ draw_3circles (cairo_t *cr,
                double alpha)
 {
     double subradius = radius * (2 / 3. - 0.1);
-    
+
     cairo_set_source_rgba (cr, 1., 0., 0., alpha);
     oval_path (cr,
                xc + radius / 3. * cos (M_PI * (0.5)),
                yc - radius / 3. * sin (M_PI * (0.5)),
                subradius, subradius);
     cairo_fill (cr);
-    
+
     cairo_set_source_rgba (cr, 0., 1., 0., alpha);
     oval_path (cr,
                xc + radius / 3. * cos (M_PI * (0.5 + 2/.3)),
                yc - radius / 3. * sin (M_PI * (0.5 + 2/.3)),
                subradius, subradius);
     cairo_fill (cr);
-    
+
     cairo_set_source_rgba (cr, 0., 0., 1., alpha);
     oval_path (cr,
                xc + radius / 3. * cos (M_PI * (0.5 + 4/.3)),
@@ -162,7 +162,7 @@ draw (cairo_t *cr,
                                             width, height);
     if (circles == NULL)
         return;
-    
+
     fill_checks (cr, 0, 0, width, height);
 
     cairo_save (cr);
@@ -206,7 +206,7 @@ draw (cairo_t *cr,
 
             cairo_set_operator (cr_tmp, CAIRO_OPERATOR_OVER);
             draw_3circles (cr_tmp, xc, yc, radius, 0.5);
-            
+
             cairo_destroy (cr_tmp);
         }
 
@@ -240,10 +240,10 @@ main (int argc, char **argv)
   XWMHints *wmhints;
   XSizeHints *normalhints;
   XClassHint *classhint;
-  
+
   int width = 400;
   int height = 400;
-  
+
   dpy = XOpenDisplay (NULL);
   screen = DefaultScreen (dpy);
 
@@ -261,12 +261,12 @@ main (int argc, char **argv)
   classhint = XAllocClassHint ();
   classhint->res_name = "cairo-knockout";
   classhint->res_class = "Cairo-knockout";
-    
+
   wmhints = XAllocWMHints ();
   wmhints->flags = InputHint;
   wmhints->input = True;
-    
-  XmbSetWMProperties (dpy, w, title, "cairo-knockout", 0, 0, 
+
+  XmbSetWMProperties (dpy, w, title, "cairo-knockout", 0, 0,
                       normalhints, wmhints, classhint);
   XFree (wmhints);
   XFree (classhint);
@@ -279,7 +279,7 @@ main (int argc, char **argv)
 
   XSelectInput (dpy, w, ExposureMask | StructureNotifyMask | ButtonPressMask | KeyPressMask);
   XMapWindow (dpy, w);
-  
+
   needs_redraw = 1;
 
   while (1) {
@@ -309,7 +309,7 @@ main (int argc, char **argv)
 
           needs_redraw = 0;
       }
-      
+
       XNextEvent (dpy, &xev);
 
       switch (xev.xany.type) {
