@@ -1,3 +1,19 @@
+
+# autotool stuff
+aclocal.m4
+autom4te.cache
+aux
+config.log
+config.status
+configure
+Makefile
+Makefile.in
+
+# Build artifacts and intermediaries
+cairo-fb
+
+
+
 exports
 xrfreq
 xrfreq.1x.html
@@ -7,3 +23,11 @@ xrspline
 xrspline.1x.html
 xrtest
 xrtest.1x.html
+
+*.o
+.deps
+
+
+configure
+Makefile
+Makefile.in
